@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoplay Video Website</title>
+    <style>
+        /* Optional: Centers the video and makes it responsive */
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The critical attributes are autoplay, muted, and playsinline -->
+    <video src="myvideo.mp4" autoplay muted playsinline loop controls></video>
+
+</body>
+</html>
