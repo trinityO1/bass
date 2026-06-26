@@ -1,4 +1,72 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersive Video Experience</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        /* The hidden video, scaled to fill the screen */
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* The sleek overlay covering the video before the click */
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        /* A nice, clean button to prompt the user */
+        .start-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <button class="start-btn">Click to Enter</button>
+    </div>
+
+    <video id="myVideo" src="myvideo.mp4" playsinline loop></video>
+
+    <script>
         const overlay = document.getElementById('overlay');
         const video = document.getElementById('myVideo');
 
@@ -9,19 +77,20 @@
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
 
-            // 2. FORCE the video to unmute, then play
-            video.muted = false; 
-            video.volume = 1.0; // Sets volume to 100%
+            // 2. Play the video with sound
             video.play();
 
-            // 3. Trigger true full-screen mode
+            // 3. Trigger true full-screen mode on the whole webpage
             const docElm = document.documentElement;
             if (docElm.requestFullscreen) {
                 docElm.requestFullscreen();
-            } else if (docElm.webkitRequestFullscreen) {
+            } else if (docElm.webkitRequestFullscreen) { /* Safari */
                 docElm.webkitRequestFullscreen();
-            } else if (docElm.msRequestFullscreen) {
+            } else if (docElm.msRequestFullscreen) { /* IE11 */
                 docElm.msRequestFullscreen();
             }
         });
     </script>
+
+</body>
+</html>
